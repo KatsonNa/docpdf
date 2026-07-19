@@ -120,8 +120,64 @@ export default function Home() {
           </div>
         )}
 
-        <ToolGrid />
-        <HowItWorks />
+        {/* 2-column section below converter */}
+        <div className="mt-16 grid lg:grid-cols-2 gap-8 items-start">
+
+          {/* Left — How it works */}
+          <div id="how">
+            <h2 className="text-xl font-semibold mb-6" style={{ color: "var(--text-1)" }}>
+              How it works
+            </h2>
+            <div className="flex flex-col gap-4">
+              {[
+                { step: 1, title: "Add your images", desc: "Drop JPEG, PNG or WEBP files onto the page, or click to browse. Drag to reorder." },
+                { step: 2, title: "Set your options", desc: "Choose page size, orientation, and margins. Everything runs in your browser." },
+                { step: 3, title: "Download the PDF", desc: "One click. Your PDF is built locally — nothing is uploaded to any server." },
+              ].map((s) => (
+                <div key={s.step} className="flex gap-4 p-4 rounded-2xl"
+                  style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
+                  <span className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
+                    style={{ background: "var(--accent-dim)", color: "var(--accent-text)" }}>
+                    {s.step}
+                  </span>
+                  <div>
+                    <p className="font-semibold text-sm" style={{ color: "var(--text-1)" }}>{s.title}</p>
+                    <p className="text-sm mt-1 leading-relaxed" style={{ color: "var(--text-2)" }}>{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — All tools */}
+          <div>
+            <h2 className="text-xl font-semibold mb-6" style={{ color: "var(--text-1)" }}>
+              All tools
+            </h2>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { href: "/", label: "Images → PDF", desc: "JPG, PNG, WEBP to PDF", color: "#e8a020" },
+                { href: "/merge-pdf", label: "Merge PDF", desc: "Combine PDFs into one", color: "#7c3aed" },
+                { href: "/compress-pdf", label: "Compress PDF", desc: "Reduce PDF file size", color: "#0891b2" },
+                { href: "/pdf-to-jpg", label: "PDF → Images", desc: "Export pages as JPG/PNG", color: "#16a34a" },
+              ].map((t) => (
+                <a key={t.href} href={t.href}
+                  className="flex flex-col gap-3 p-4 rounded-2xl transition-all hover:scale-[1.02]"
+                  style={{ background: "var(--surface)", border: "1px solid var(--border)", boxShadow: "var(--shadow-sm)" }}>
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center"
+                    style={{ background: t.color + "22" }}>
+                    <span style={{ color: t.color, fontSize: 18 }}>⬡</span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold" style={{ color: "var(--text-1)" }}>{t.label}</p>
+                    <p className="text-xs mt-0.5" style={{ color: "var(--text-3)" }}>{t.desc}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+        </div>
       </main>
       <Footer />
     </div>
